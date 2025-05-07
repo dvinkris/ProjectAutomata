@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validasi String CFG</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Validasi String CFG</h1>
+        <form method="POST">
+            <input type="text" name="binary_input" placeholder="Masukkan string biner" required>
+            <button type="submit">Cek</button>
+        </form>
+        {% if result is not none %}
+            <h2>String "{{ result[0] }}" <span class="{{ 'accepted' if result[1] else 'rejected' }}">{{ 'DITERIMA' if result[1] else 'DITOLAK' }}</span></h2>
+            {% if steps %}
+            <div class="steps">
+                <h3>Langkah:</h3>
+                <ul>
+                    {% for step in steps %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
